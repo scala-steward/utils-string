@@ -1,5 +1,5 @@
 val commonsettings = Seq(
-  version := "1.0.0",
+  version := "1.1.0",
   organization := "io.github.pityka",
   scalaVersion := "2.12.4")
 

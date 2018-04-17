@@ -93,6 +93,12 @@ package object stringsplit {
     }
   }
 
+  def split1Array(str: String, sep: Char): Array[String] =
+    split1Iter(str, sep).toArray
+
+  def split1Array(str: String, sep: Set[Char]): Array[String] =
+    split1Iter(str, sep).toArray
+
   def split1(str: String, sep: Char): IndexedSeq[String] =
     split1Iter(str, sep).toIndexedSeq
 
@@ -135,6 +141,14 @@ package object stringsplit {
     splitMIter(str, sep).toIndexedSeq
   }
 
+  def splitMArray(str: String, sep: Char): Array[String] = {
+    splitMIter(str, sep).toArray
+  }
+
+  def splitMArray(str: String, sep: Set[Char]): Array[String] = {
+    splitMIter(str, sep).toArray
+  }  
+
   def splitMIter(str: String, sep: Set[Char]): Iterator[String] =
     new Iterator[String] {
       var i = 0
@@ -161,6 +175,12 @@ package object stringsplit {
     }
 
   implicit class StringWithFastSplit(string: String) {
+    def splitMArray(s: Char): Array[String] =
+      stringsplit.splitMArray(string, s)
+
+    def splitMArray(ss: Set[Char]): Array[String] =
+      stringsplit.splitMArray(string, ss)
+
     def splitM(s: Char): IndexedSeq[String] =
       stringsplit.splitM(string, s)
 
@@ -178,6 +198,12 @@ package object stringsplit {
 
     def split1(ss: Set[Char]): IndexedSeq[String] =
       stringsplit.split1(string, ss)
+
+    def split1Array(s: Char): Array[String] =
+      stringsplit.split1Array(string, s)
+
+    def split1Array(ss: Set[Char]): Array[String] =
+      stringsplit.split1Array(string, ss)
 
     def split1Iter(s: Char): Iterator[String] =
       stringsplit.split1Iter(string, s)
