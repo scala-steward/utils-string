@@ -1,21 +1,22 @@
 val commonsettings = Seq(
-  version := "1.1.0",
+  version := "1.1.1",
   organization := "io.github.pityka",
-  scalaVersion := "2.12.4")
+  scalaVersion := "2.13.5",
+  crossScalaVersions := Seq("2.12.13")
+)
 
-lazy val root = crossProject.crossType(CrossType.Pure).in(file(".")).
-  settings(commonsettings:_*).
-  settings(
-    name:="stringsplit",
-    libraryDependencies += "org.scalatest" %%% "scalatest" % "3.0.0" % "test"
-    )
-
+lazy val root = crossProject(JSPlatform, JVMPlatform)
+  .crossType(CrossType.Pure)
+  .in(file("."))
+  .settings(commonsettings: _*)
+  .settings(
+    name := "stringsplit",
+    libraryDependencies += "org.scalatest" %%% "scalatest" % "3.2.5" % "test"
+  )
 
 lazy val sharedJVM = root.jvm
 
 lazy val sharedJS = root.js
-
-
 
 pomExtra in Global := {
   <url>https://pityka.github.io/utils-string</url>

@@ -3,12 +3,11 @@ import scala.collection.mutable.ArrayBuffer
 /** Simple string tokenizers
   *
   * - split1 splits the string at each of the separator characters
-  * - splitM plits the strign at continuous runs of the separator characters
+  * - splitM plits the string at continuous runs of the separator characters
   */
 package object stringsplit {
 
-  /**
-    * Splits a string onto substrings.
+  /** Splits a string onto substrings.
     *
     * Cuts the string into substrings and gives an iterator on them.
     * Whether the string is copied or not depends on String.substring
@@ -19,7 +18,7 @@ package object stringsplit {
 
       def hasNext = i <= str.length
 
-      def next = {
+      def next() = {
         val j = i
         while (i < str.length && str.charAt(i) != sep) {
           i += 1
@@ -32,8 +31,7 @@ package object stringsplit {
 
     }
 
-  /**
-    * Splits a string onto substrings.
+  /** Splits a string onto substrings.
     *
     * Cuts the string into substrings and gives an iterator on them.
     * Whether the string is copied or not depends on String.substring
@@ -44,7 +42,7 @@ package object stringsplit {
 
       def hasNext = i <= str.length
 
-      def next = {
+      def next() = {
         val j = i
         while (i < str.length && !sep.contains(str.charAt(i))) {
           i += 1
@@ -58,8 +56,10 @@ package object stringsplit {
     }
 
   /** Stores all elements in the given mutable buffer. */
-  def storeIterInArrayAll[T](iter: Iterator[T],
-                             destination: ArrayBuffer[T]): Unit = {
+  def storeIterInArrayAll[T](
+      iter: Iterator[T],
+      destination: ArrayBuffer[T]
+  ): Unit = {
     var i = 0
     while (iter.hasNext) {
       val s = iter.next
@@ -73,18 +73,21 @@ package object stringsplit {
   }
 
   /** Stores the elements between [i,j) indices (exclusive end)  in the given mutable buffer. */
-  def storeIterInArrayInterval[T](iter: Iterator[T],
-                                  destination: ArrayBuffer[T],
-                                  i: Int,
-                                  j: Int): Unit = {
+  def storeIterInArrayInterval[T](
+      iter: Iterator[T],
+      destination: ArrayBuffer[T],
+      i: Int,
+      j: Int
+  ): Unit = {
     var k = 0
     while (iter.hasNext && k < j) {
       val s = iter.next
 
       if (k >= i && k < j) {
 
-        while (destination.size < k + 1 - i) destination += (null)
-          .asInstanceOf[T]
+        while (destination.size < k + 1 - i)
+          destination += (null)
+            .asInstanceOf[T]
 
         destination(k - i) = s
       }
@@ -105,8 +108,7 @@ package object stringsplit {
   def split1(str: String, sep: Set[Char]): IndexedSeq[String] =
     split1Iter(str, sep).toIndexedSeq
 
-  /**
-    * Splits string onto substrings, while continuous spans of separators are merged.
+  /** Splits string onto substrings, while continuous spans of separators are merged.
     */
   def splitMIter(str: String, sep: Char): Iterator[String] =
     new Iterator[String] {
@@ -118,7 +120,7 @@ package object stringsplit {
 
       def hasNext = i < str.length
 
-      def next = {
+      def next() = {
         val j = i
         while (i < str.length && str.charAt(i) != sep) {
           i = i + 1
@@ -147,7 +149,7 @@ package object stringsplit {
 
   def splitMArray(str: String, sep: Set[Char]): Array[String] = {
     splitMIter(str, sep).toArray
-  }  
+  }
 
   def splitMIter(str: String, sep: Set[Char]): Iterator[String] =
     new Iterator[String] {
@@ -159,7 +161,7 @@ package object stringsplit {
 
       def hasNext = i < str.length
 
-      def next = {
+      def next() = {
         val j = i
         while (i < str.length && !sep.contains(str.charAt(i))) {
           i = i + 1

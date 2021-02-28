@@ -1,4 +1,4 @@
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.{AnyFunSuite => FunSuite}
 import scala.io.Source
 
 import stringsplit._
@@ -38,10 +38,14 @@ class FastSplitSeparatorTestSuite extends FunSuite {
     assertResult(IndexedSeq("1", "2", "", "", "", "3")) {
       split1("1,2,,,,3", ',')
     }
-    assertResult(IndexedSeq("", "", "", "1", "", "2", "", "", "3", "", "", "")) {
+    assertResult(
+      IndexedSeq("", "", "", "1", "", "2", "", "", "3", "", "", "")
+    ) {
       split1(",,,1,,2,,,3,,,", ',')
     }
-    assertResult(IndexedSeq("", "", "", "1", "", "2", "", "", "3", "", "", "")) {
+    assertResult(
+      IndexedSeq("", "", "", "1", "", "2", "", "", "3", "", "", "")
+    ) {
       split1("\n\n\n1\n\n2\n\n\n3\n\n\n", '\n')
     }
     assertResult(IndexedSeq("", "1", "2", "3")) { split1(",1,2,3", ',') }
@@ -60,7 +64,9 @@ class FastSplitSeparatorTestSuite extends FunSuite {
     assertResult(IndexedSeq("", "", "", "", "", "")) {
       split1(",,,,,", Set(','))
     }
-    assertResult(IndexedSeq("", "", "", "1", "", "2", "", "", "3", "", "", "")) {
+    assertResult(
+      IndexedSeq("", "", "", "1", "", "2", "", "", "3", "", "", "")
+    ) {
       split1("\n\n\n1\n\n2\n\n\n3\n\n\n", Set('\n', '\t'))
     }
 
