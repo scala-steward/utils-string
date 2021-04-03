@@ -1,8 +1,6 @@
 val commonsettings = Seq(
-  version := "1.1.1",
-  organization := "io.github.pityka",
   scalaVersion := "2.13.5",
-  crossScalaVersions := Seq("2.12.13")
+  crossScalaVersions := Seq("2.12.13", "2.13.5")
 )
 
 lazy val root = crossProject(JSPlatform, JVMPlatform)
@@ -11,8 +9,7 @@ lazy val root = crossProject(JSPlatform, JVMPlatform)
   .settings(commonsettings: _*)
   .settings(
     name := "stringsplit",
-    libraryDependencies += "org.scalatest" %%% "scalatest" % "3.2.5" % "test",
-    publishTo := sonatypePublishToBundle.value
+    libraryDependencies += "org.scalatest" %%% "scalatest" % "3.2.5" % "test"
   )
 
 lazy val sharedJVM = root.jvm
