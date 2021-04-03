@@ -1,3 +1,19 @@
+inThisBuild(
+  List(
+    organization := "io.github.pityka",
+    homepage := Some(url("https://pityka.github.io/utils-string/")),
+    licenses := List(("MIT", url("https://opensource.org/licenses/MIT"))),
+    developers := List(
+      Developer(
+        "pityka",
+        "Istvan Bartha",
+        "bartha.pityu@gmail.com",
+        url("https://github.com/pityka/utils-string")
+      )
+    )
+  )
+)
+
 val commonsettings = Seq(
   scalaVersion := "2.13.5",
   crossScalaVersions := Seq("2.12.13", "2.13.5")
@@ -15,25 +31,3 @@ lazy val root = crossProject(JSPlatform, JVMPlatform)
 lazy val sharedJVM = root.jvm
 
 lazy val sharedJS = root.js
-
-pomExtra in Global := {
-  <url>https://pityka.github.io/utils-string</url>
-  <licenses>
-    <license>
-      <name>MIT</name>
-      <url>https://opensource.org/licenses/MIT</url>
-    </license>
-  </licenses>
-  <scm>
-    <connection>scm:git:github.com/pityka/utils-string</connection>
-    <developerConnection>scm:git:git@github.com:pityka/utils-string</developerConnection>
-    <url>github.com/pityka/utils-string</url>
-  </scm>
-  <developers>
-    <developer>
-      <id>pityka</id>
-      <name>Istvan Bartha</name>
-      <url>https://pityka.github.io/utils-string/</url>
-    </developer>
-  </developers>
-}
