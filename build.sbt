@@ -16,7 +16,8 @@ inThisBuild(
 
 val commonsettings = Seq(
   scalaVersion := "2.13.5",
-  crossScalaVersions := Seq("2.12.13", "2.13.5")
+  crossScalaVersions := Seq("2.12.13", "2.13.5"),
+  mimaPreviousArtifacts := Set(organization.value %% moduleName.value % "1.1.3")
 )
 
 lazy val root = crossProject(JSPlatform, JVMPlatform)
