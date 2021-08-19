@@ -2,15 +2,15 @@ import scala.collection.mutable.ArrayBuffer
 
 /** Simple string tokenizers
   *
-  * - split1 splits the string at each of the separator characters
-  * - splitM plits the string at continuous runs of the separator characters
+  *   - split1 splits the string at each of the separator characters
+  *   - splitM plits the string at continuous runs of the separator characters
   */
 package object stringsplit {
 
   /** Splits a string onto substrings.
     *
-    * Cuts the string into substrings and gives an iterator on them.
-    * Whether the string is copied or not depends on String.substring
+    * Cuts the string into substrings and gives an iterator on them. Whether the
+    * string is copied or not depends on String.substring
     */
   def split1Iter(str: String, sep: Char): Iterator[String] =
     new Iterator[String] {
@@ -33,8 +33,8 @@ package object stringsplit {
 
   /** Splits a string onto substrings.
     *
-    * Cuts the string into substrings and gives an iterator on them.
-    * Whether the string is copied or not depends on String.substring
+    * Cuts the string into substrings and gives an iterator on them. Whether the
+    * string is copied or not depends on String.substring
     */
   def split1Iter(str: String, sep: Set[Char]): Iterator[String] =
     new Iterator[String] {
@@ -72,7 +72,9 @@ package object stringsplit {
     }
   }
 
-  /** Stores the elements between [i,j) indices (exclusive end)  in the given mutable buffer. */
+  /** Stores the elements between [i,j) indices (exclusive end) in the given
+    * mutable buffer.
+    */
   def storeIterInArrayInterval[T](
       iter: Iterator[T],
       destination: ArrayBuffer[T],
@@ -108,7 +110,8 @@ package object stringsplit {
   def split1(str: String, sep: Set[Char]): IndexedSeq[String] =
     split1Iter(str, sep).toIndexedSeq
 
-  /** Splits string onto substrings, while continuous spans of separators are merged.
+  /** Splits string onto substrings, while continuous spans of separators are
+    * merged.
     */
   def splitMIter(str: String, sep: Char): Iterator[String] =
     new Iterator[String] {
