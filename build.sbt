@@ -16,7 +16,7 @@ inThisBuild(
 
 val commonsettings = Seq(
   scalaVersion := "2.13.6",
-  crossScalaVersions := Seq("2.12.17", "2.13.6"),
+  crossScalaVersions := Seq("2.12.19", "2.13.6"),
   mimaPreviousArtifacts := Set(organization.value %% moduleName.value % "1.1.3")
 )
 
